@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1730053051711
+current_stage: Production
+description: ''
+last_updated_timestamp: 1730053098696
+name: My_model
+run_id: e40ea6f540304dbb9efa6ebeb57e6adf
+run_link: ''
+source: /home/alumni/Programación/Bootcamp Data Science y MLops/Material/ProyectoFinal/FinalProject/src/notebooks/../../deployment/mlruns/466034536605459027/e40ea6f540304dbb9efa6ebeb57e6adf/artifacts/My_model
+status: READY
+status_message: null
+storage_location: /home/alumni/Programación/Bootcamp Data Science y MLops/Material/ProyectoFinal/FinalProject/src/notebooks/../../deployment/mlruns/466034536605459027/e40ea6f540304dbb9efa6ebeb57e6adf/artifacts/My_model
+user_id: null
+version: 1

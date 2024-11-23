@@ -1,0 +1,15 @@
+artifact_uri: /home/alumni/Programación/Bootcamp Data Science y MLops/Material/ProyectoFinal/FinalProject/src/notebooks/../../deployment/mlruns/466034536605459027/e40ea6f540304dbb9efa6ebeb57e6adf/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '466034536605459027'
+lifecycle_stage: active
+run_id: e40ea6f540304dbb9efa6ebeb57e6adf
+run_name: receptive-crane-430
+run_uuid: e40ea6f540304dbb9efa6ebeb57e6adf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729798669505
+status: 1
+tags: []
+user_id: alumni
