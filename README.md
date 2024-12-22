@@ -1,8 +1,8 @@
-# Proyecto final - Detección y Prevención de Fraude
-## Descripción del Proyecto
-### <u>Objetivo </u>
-En este proyecto, voy a realizar un modelo de clasificación con Random Forest para detectar y prevenir fraudes a partir de los clientes ficticios de una empresa de comercio electrónico.  
-_<u>Los datos de entrada que se le van a pasar al modelo para hacer la predicción son:</u>_
+# Final Project - Fraud Detection and Prevention Model
+## Project Description
+### <u>Objective</u>
+In this project, I am going to build a classification model with Random Forest in order to detect and prevent fraud. The data I am going to use to train the model came from fictional clients of an E-commerce company.  
+_<u>The input data that will be passed to the model in order to make predictions are:</u>_
 - `orderAmount`: Float
 - `orderState`: String
 - `paymentMethodRegistrationFailure`: String
@@ -10,87 +10,87 @@ _<u>Los datos de entrada que se le van a pasar al modelo para hacer la predicci�
 - `paymentMethodProvider`: String
 - `paymentMethodIssuer`: String
 - `transactionAmount`: Integer
-- `transactionFailed`: Bool
+- `transactionFailed`: Boolean
 - `emailDomain`: String
 - `emailProvider`: String
 - `customerIPAddressSimplified`: String
 - `sameCity`: String  
 
-_<u>Y le vamos a devolver una de las siguientes predicciones:</u>_
+_<u>And the model is going to return one of the following predictions:</u>_
 - __No__
 - __Sí__
 - __Warning__
-### <u>Proceso</u>
-Vamos a recibir un dataset en formato JSON, el cual lo tenemos que __transformar__ a un formato CSV.  
-Luego de realizar esta transformación, podemos observar columnas que deberíamos eliminarlas o manipularlas. Por ejemplo, los identificadores deberíamos eliminarlos, y en la columna `CustomerEmail` nos tenemos que quedar con los valores más importantes/comunes y luego clasificar los valores raros con un valor nuevo llamado _"weird"_.  
+### <u>Process</u>
+We are going to receive a dataset in JSON format, which we need to __transform__ into a CSV format. After performing this transformation, we can observe certain columns that should be deleted or manipulated. For example, we should remove the IDs , and for the  `CustomerEmail` column, we need to keep the most important/common values and classify rare values under a new label called _"weird"_.  
 
-Luego de este proceso de adaptación y manipulación de datos, hacemos un __Análisis Exploratorio de Datos (EDA)__, donde hacemos análisis univariado, análisis bivariado y correlaciones, de ciertas variables que nos llamaron la atención. Habiendo realizado el EDA, resalté ciertas observaciones que pude encontrar.  
+After this data adaptation and manipulation process, we proceed with an __Exploratory Data Analysis (EDA)__, where we conduct univariate analysis, bivariate analysis and correlations for specific variables that stood out to us. Once the EDA was done, I highlighted specific insights I found.
+ 
+After completing the EDA, we __prepare the data__ by discretizing variables, handling missing values, and interpretating and modifying certain variables.
 
-Después de haber hecho el EDA, realizamos la __preparación de datos__ donde discretizamos variables, tratamos nulos e interpretamos y modificamos ciertas variables.  
+Before training, we select specific columns from the post-processed dataset, and normalize their values. During training, we are going to train two __Clustering__ models with two different algorithms: One model will use the __K-Means__ algorithm while the other one will use __HDBSCAN__. Once trained, we document the insights discovered through a coordinate plot for each model. 
 
-Previo al entrenamiento, seleccionamos ciertas columnas del dataset post procesado y normalizamos los valores dentro de ellas. A la hora del entrenamiento, vamos a entrenar 2 modelos de __Clustering__ con 2 algoritmos distintos: Un modelo usa el algoritmo de __K-Means__ y otro el de __HDBSCAN__. Luego de haberlos entrenado, a través de un gráfico de coordenadas plasmo las observaciones encontradas para cada modelo.  
+To finalize with the modeling process, we will create a __classification model with Random Forest__. Once the model was trained with specific parameters, we generate a confusion matrix in order to observe the number of correct and incorrect predictions made by the model, organized by class.
 
-Para finalizar con el modelado, vamos a realizar una __modelo de clasificación con Random Forest__. Una vez entrenado el modelo con ciertos parámetros, realizamos una matriz de confusión para poder observar la cantidad de predicciones correctas e incorrectas del modelo, organizadas por clase.
+Moving on to the __API´s development__, we create an API that receives specific input data, it transforms them (discretization, one hot encoding), and returns the prediction made by model based on that input. Then we containerize the API using Docker. Finally, we host it on Microsoft Azure.
 
-Pasando al __desarrollo de la API__, creamos una API que reciba ciertos datos de entrada, los transforme (discretización,one hot encoding) y devuelva la predicción del modelo en base a esos datos de entrada. Luego creamos un contenedor con Docker de la API. Finalmente, la alojamos en Microsoft Azure. 
+Finally, we create with Gradio a __Graphical User Interface__ and we deploy it in Hugging Face Spaces. The URL to test the interactive app is: https://huggingface.co/spaces/Itrs/Proyecto_Final
 
-Por último, creamos con Gradio una __interfaz gráfica interactiva__ y la alojamos en Hugging Face Space. La URL para la app interactiva es la siguiente: https://huggingface.co/spaces/Itrs/Proyecto_Final
+## Methods Used
+- Data Cleaning and Transformation (Data Wrangling)
+- Exploratory Data Analysis (EDA)
+- Data Visualization
+- Data Preparation
+- Model Training (Clustering and Classification)
+- Model Evaluation
+- Model Deployment with an API, Docker y Microsoft Azure
+- Graphical User Interface with Gradio
 
-## Métodos Usados
-- Limpieza y Transformación de Datos (Data Wrangling)
-- Análisis Exploratorio de los Datos (EDA)
-- Visualización de Datos
-- Preparación de Datos
-- Entrenamiento de Modelo (Clustering y Clasificación)
-- Evaluación de Modelo
-- Despliegue de Modelo con una API, Docker y Microsoft Azure
-- Interfaz Gráfica del Usuario con Gradio
+## Technologies and Tools used
+### <ins>1. Cleaning, Transformation and Data Preparation </ins> 
+- **Pandas**: Load and prepare data, efficiently manipulate datasets, transform a dataset from JSON format to CSV format, perform descriptive analysis.
 
-## Tecnologías y Herramientas Utilizadas
-### <ins>1. Limpieza, Transformación y Preparación de Datos </ins> 
-- **Pandas**: Cargar y preparar datos, manipular conjuntos de datos eficientemente, transformación de dataset en formato JSON a formato CSV, realizar análisis descriptivo.
+### <ins>2. Data Visualization / EDA</ins>
+- **Funpymodeling**: Observe data distribution, the number of unique values and their occurrences, standard deviation, percentage of missing values, correlation between variables, among other information.
+- **Seaborn y Matplotlib**:  Tools for data visualization and creation of statistical plots (Correlation, scatter plots, confusion matrix).
+- **Minepy (MINE)**:  Identify non-linear and complex relationships between variables in datasets using the algorithm MINE (Maximal Information-based Nonparametric Exploration).
+- **YellowBrick (Cluster.KelbowVisualizer)**: Visualization of the Elbow Method in clustering algorithms.
+- **Plotly (Scatter3D)**: Visualization of Interactive 3d Scatter Plots for clusters.
 
-### <ins>2. Visualización de Datos / EDA</ins>
-- **Funpymodeling**: Observar distribución de los datos, cantidad de valores únicos y la cantidad de apariciones de cada uno, desvío estándar, porcentaje de nulos, correlación entre variables, entre otra información.
-- **Seaborn y Matplotlib**: Herramientas para la visualización de datos y creación de gráficos estadísticos (Correlación, gráficos de dipersión, matriz de confusion).
-- **Minepy (MINE)**: Identificar relaciones no lineales y complejas entre variables en conjuntos de datos con el algoritmo MINE (Maximal Information-based Nonparametric Exploration).
-- **YellowBrick (Cluster.KelbowVisualizer)**: Visualización del método del codo en algoritmos de clustering.
-- **Plotly (Scatter3D)**: Visualización de gráfico interactivo 3D de dispersión para clusters.
-
-### <ins>3. Modelado</ins>
-- **Hdbscan**: Algoritmo de HDBSCAN para Modelo de Clustering.
+### <ins>3. Modeling</ins>
+- **Hdbscan**: HDBSCAN algorithm (Clustering Model).
 - **Scikit-Learn**
-    - **KMeans**: Algoritmo de K-Means para Modelo de Clustering.
-    - **RandomForestClassifier**: Algoritmo de Random Forest para Modelo de Clasificación.
-    - **ConfusionMatrixDisplay**: Visualizar Matriz de Confusión para el Modelo de Clasificación.
-- **Mlflow**: Gestión y registro de experimentos de modelos, permitiendo rastrear parámetros, métricas y versiones.
+    - **KMeans**: K-Means algorithm (Clustering Model).
+    - **RandomForestClassifier**: Random Forest algorithm (Classification Model).
+    - **ConfusionMatrixDisplay**: Visualize Confusion Matrix (Classification Model).
+- **Mlflow**: Management and registration of model experiments, allowing us to track parameters, metrics and versions.
 
 ### <ins>4. API</ins>
-- **FastAPI**: Creación de una API para exponer el modelo entrenado.
-- **Uvicorn**: Servidor ASGI ligero y rápido que permite ejecutar la API asíncronamente.
-- **Requests**: Hacer solicitudes HTTP a la API.
-- **Pydantic**: Validar los datos de entrada de la API.
-- **Gradio**: Interfaz gráfica interactiva que permite a los usuarios probar el modelo visualmente.
+- **FastAPI**: API creation in order to expose the trained model.
+- **Uvicorn**: Light and fast ASGI server that allows the asyncronous execution of the API.
+- **Requests**: Make HTTP requests to the API.
+- **Pydantic**: Validate the input data of the API.
+- **Gradio**: Graphical User Interface that allows the users to test the model.
 
 ### <ins>5. Deployment</ins> 
-- **Docker**: Contenerizar la API y simplificar su despliegue.
-- **Hugging Face Space**: Alojar y compartir el modelo de manera centralizada.
-- **Microsoft Azure**: Plataforma de despliegue para alojar la API.
+- **Docker**: Containerize the API and simplify its deployment.
+- **Hugging Face Space**: Host and share the model  in a centralized way.
+- **Microsoft Azure**: Deployment platform in order to host the API.
 
-### <ins>Lenguaje de Programación</ins>
-- **Python**: Lenguaje principal para el desarrollo del proyecto, compatible con las bibliotecas de ciencia de datos y machine learning.
+### <ins>Programming Language</ins>
+- **Python**: Main language used for the development of the project, compatible with the libraries of data science and machine learning.
 
-## Instalación
+## Installation
 ### Docker
-1. Crear imagen:  
+1. Build image:  
 `docker build -t proyecto_final .`
 
-2. Crear contenedor:  
+2. Build container:  
 `docker run -p 7860:7860 -e ID_USER=Iñaki proyecto_final` 
 
-## Deploy Docker Hub + Web App en Microsoft Azure 
+## Deploy Docker Hub + Web App in Microsoft Azure 
 ![](imgs/DockerHub+WebApp1.png)
 ![/docs](imgs/DockerHub+WebApp2.png)
 
-## A tener en cuenta
-- Si queremos ejecutar `mlflow ui`, debemos estar ubicados en la carpeta __deployment/__, que es donde se encuentra la carpeta __mlruns/__ .
+## To keep in mind
+- If we want to run `mlflow ui`, we must be inside the __deployment/__ folder, which is where the __mlruns/__ folder is located.
+- The insights made in the notebooks are in Spanish.
